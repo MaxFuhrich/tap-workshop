@@ -1,0 +1,41 @@
+accelerator:
+  displayName: Evoila TAP-Workshop Accelerator
+  description: This is a simple accelerator for educational purposes
+  iconUrl: https://evoilade.sharepoint.com/sites/intranet/marketing/SiteAssets/SitePages/evoila-Logovarianten/583796762-Keyvisual---weiß-mit-Hintergrund.svg
+  tags:
+    - education
+  options:
+    - name: workloadName
+      inputType: text
+      label: Workload name
+      required: true
+      defaultValue: "test"
+
+engine:
+#  chain:
+#    - merge:
+#        - include: [ "**/*" ]
+#          exclude: [ "roottext" ]
+#        - include: [ "folder-1/simpletext" ]
+#          chain:
+#            - type: ReplaceText
+#              substitutions:
+#                - text: "drei"
+#                  with: "'drei vier'"
+#            - merge:
+#                - type: ReplaceText
+#                  substitutions:
+#                    - text: "vier"
+#                      with: "'vier fuenf'"
+#              #            - type: InvokeFragment
+#              #              reference: not-existing-fragment
+#              #            - include: [ "**" ]
+#              onConflict: UseFirst
+  merge:
+    - include: [ "**/*" ]
+    - include: [ "config/workload.yaml" ]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: "accelerator-name"
+              with: "#workloadName"
